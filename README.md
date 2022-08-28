@@ -21,8 +21,10 @@ First you need to export the project and send it to your vps:
 
 Here is how to run it on a Linux Ubuntu VPS:
 
-1. Download linux server godot distribution on your linux vps by using the command ```wget https://downloads.tuxfamily.org/godotengine/3.5/Godot_v3.5-stable_linux_server.64.zip``` your version might be different depending on the time you are reading this.
+1. Download Putty and connect to the vps.
 
-2. Unzip it by using ```unzip [zip-name] (i.e. unzip Godot_v3.5-stable_linux_server.64.zip)```
+2. Download linux server godot distribution on your linux vps by using the command ```wget https://downloads.tuxfamily.org/godotengine/3.5/Godot_v3.5-stable_linux_server.64.zip``` your version might be different depending on the time you are reading this.
 
-3. Run the project pck by using ```[godot-dist-here] --main-pack [File-name].pck (i.e. ./Godot_v3.5-stable_linux_server.64 --main-pack Server.pck)```
+3. Unzip it by using ```unzip [zip-name] (i.e. unzip Godot_v3.5-stable_linux_server.64.zip)```
+
+4. Run the project pck by using ```[godot-dist-here] --main-pack [File-name].pck (i.e. ./Godot_v3.5-stable_linux_server.64 --main-pack Server.pck)```
