@@ -1,10 +1,10 @@
 extends Node
 
+onready var movement = $Movement
+
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
 var max_player = 2
-
-var dict:Dictionary = {}
 
 func _ready():
 	start_server()
@@ -23,13 +23,8 @@ func _peer_connected(player_id):
 func _peer_disconnected(player_id):
 	print("user disconnected: " + str(player_id))
 
-remote func fetch_player_transform(transform):
-	var player_id = get_tree().get_rpc_sender_id()
-	dict[player_id] = transform
+remote func receive_player_transform(data):
+	movement.receive_player_transform(data)
 
-func return_player_transform():
-	var player_id = get_tree().get_rpc_sender_id()
-	rpc_unreliable_id(0, "return_player_transform", dict)
-
-func _physics_process(delta):
-	return_player_transform()
+func send_world_state(world_state):
+	rpc_unreliable_id(0, "receive_world_state", world_state)
