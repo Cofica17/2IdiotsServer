@@ -15,8 +15,7 @@ You can run this project online on an VPS so other player not in your local netw
 
 First you need to export the project and send it to your vps:
 1. Export the project for linux
-2. Connect to the vps via cmd through ```ssh [ip-adress]```
-3. Transfer the file with ```[path/file.pck] [username]@[ip-adress or domain name]:[folder]/[file_name.pck] (i.e. D:\godot_projects\2idiots-export\2IdiotsServer.pck root@123.12.12.123:2idiots/Server.pck)```
+2. Transfer the file with ```scp [path/file.pck] [username]@[ip-adress or domain name]:[folder]/[file_name.pck] (i.e. scp D:\godot_projects\2idiots-export\2IdiotsServer.pck root@123.12.12.123:2idiots/Server.pck)```
 
 
 Here is how to run it on a Linux Ubuntu VPS:
