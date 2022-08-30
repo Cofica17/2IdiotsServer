@@ -22,6 +22,7 @@ func _peer_connected(player_id):
 
 func _peer_disconnected(player_id):
 	print("user disconnected: " + str(player_id))
+	movement.world_state.erase(player_id)
 
 
 ##############
