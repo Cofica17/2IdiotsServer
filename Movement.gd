@@ -1,9 +1,13 @@
 extends Node
 
 var world_state:Dictionary = {}
+var server
+
+func _ready():
+	server = get_parent()
 
 func _physics_process(delta):
-	get_parent().send_world_state(prepare_world_state())
+	server.send_world_state(prepare_world_state())
 
 func prepare_world_state():
 	var data:Dictionary = world_state.duplicate(true)
@@ -22,3 +26,10 @@ func receive_player_transform(data):
 			world_state[player_id] = data
 	else:
 		world_state[player_id] = data.duplicate(true)
+
+func receive_player_animation(anim):
+	var data := {
+		"I" : get_tree().get_rpc_sender_id(),
+		"A" : anim
+	}
+	server.send_player_animation(data)

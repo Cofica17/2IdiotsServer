@@ -23,8 +23,24 @@ func _peer_connected(player_id):
 func _peer_disconnected(player_id):
 	print("user disconnected: " + str(player_id))
 
+
+##############
+### REMOTE ###
+##############
+
 remote func receive_player_transform(data):
 	movement.receive_player_transform(data)
 
+remote func receive_player_animation(anim):
+	movement.receive_player_animation(anim)
+
+
+########################
+### FOR SENDING INFO ###
+########################
+
 func send_world_state(world_state):
 	rpc_unreliable_id(0, "receive_world_state", world_state)
+
+func send_player_animation(data):
+	rpc_id(0, "receive_player_animation", data)
