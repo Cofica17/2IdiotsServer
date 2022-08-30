@@ -2,7 +2,7 @@
 
 Dedicated server for 2idiots client project
 
-### For the ip adress and password to our dedicated vps we use contact the CPO or CTO
+### For password to our dedicated vps contact the CPO or CTO
 
 ## How to run
 
@@ -15,7 +15,7 @@ You can run this project online on an VPS so other player not in your local netw
 
 First you need to export the project and send it to your vps:
 1. Export the project for linux
-2. Transfer the file with ```scp [path/file.pck] [username]@[ip-adress or domain name]:[folder]/[file_name.pck] (i.e. scp D:\godot_projects\2idiots-export\2IdiotsServer.pck root@123.12.12.123:2idiots/Server.pck)```
+2. Transfer the file with ```scp [path/file.pck] [username]@[ip-adress or domain name]:[folder]/[file_name.pck] (i.e. scp D:\godot_projects\2idiots-export\2IdiotsServer.pck root@194.36.45.181:2idiots/Server.pck)```
 
 
 Here is how to run it on a Linux Ubuntu VPS:
@@ -26,4 +26,6 @@ Here is how to run it on a Linux Ubuntu VPS:
 
 3. Unzip it by using ```unzip [zip-name] (i.e. unzip Godot_v3.5-stable_linux_server.64.zip)```
 
-4. Run the project pck by using ```[godot-dist-here] --main-pack [File-name].pck (i.e. ./Godot_v3.5-stable_linux_server.64 --main-pack Server.pck)```
+4. Make sure you are in the folder with the .pck file
+
+5. Run the project pck by using ```[godot-dist-here] --main-pack [File-name].pck (i.e. ./Godot_v3.5-stable_linux_server.64 --main-pack Server.pck)```
