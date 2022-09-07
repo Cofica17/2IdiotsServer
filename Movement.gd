@@ -18,18 +18,16 @@ func prepare_world_state():
 	
 	return data
 
-func receive_player_transform(data):
-	var player_id = get_tree().get_rpc_sender_id()
-	
+func receive_player_info(player_id, data):
 	if world_state.has(player_id):
 		if world_state[player_id]["T"] < data["T"]:
 			world_state[player_id] = data
 	else:
 		world_state[player_id] = data.duplicate(true)
 
-func receive_player_animation(anim):
+func receive_player_animation(id, anim):
 	var data := {
-		"I" : get_tree().get_rpc_sender_id(),
+		"I" : id,
 		"A" : anim
 	}
 	server.send_player_animation(data)

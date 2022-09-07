@@ -1,6 +1,7 @@
 extends Node
 
 onready var movement = $Movement
+onready var combat = $Combat
 
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
@@ -29,11 +30,11 @@ func _peer_disconnected(player_id):
 ### REMOTE ###
 ##############
 
-remote func receive_player_transform(data):
-	movement.receive_player_transform(data)
+remote func receive_player_info(data):
+	movement.receive_player_info(get_tree().get_rpc_sender_id(), data)
 
 remote func receive_player_animation(anim):
-	movement.receive_player_animation(anim)
+	movement.receive_player_animation(get_tree().get_rpc_sender_id(), anim)
 
 remote func send_server_time(client_time):
 	var id = get_tree().get_rpc_sender_id()
@@ -43,6 +44,28 @@ remote func determine_latency(client_time):
 	var id = get_tree().get_rpc_sender_id()
 	rpc_id(id, "return_latency", client_time)
 
+remote func receive_player_basic_attack(data):
+	combat.receive_player_basic_attack(get_tree().get_rpc_sender_id(), data)
+
+remote func receive_player_scope_in():
+	rpc_id(0, "receive_player_scope_in", get_tree().get_rpc_sender_id())
+
+remote func receive_player_scope_out():
+	rpc_id(0, "receive_player_scope_out", get_tree().get_rpc_sender_id())
+
+remote func receive_player_damage(dmg):
+	var d = {
+		"I": get_tree().get_rpc_sender_id(),
+		"D": dmg
+	}
+	rpc_id(0, "receive_damage", d)
+
+remote func receive_player_health(health):
+	var data = {
+		"id" : get_tree().get_rpc_sender_id(),
+		"health" : health
+	}
+	rpc_id(0, "receive_player_health", data)
 ########################
 ### FOR SENDING INFO ###
 ########################
@@ -55,3 +78,6 @@ func send_world_state(world_state):
 
 func send_player_animation(data):
 	rpc_id(0, "receive_player_animation", data)
+
+func send_player_basic_attack(data):
+	rpc_id(0, "receive_player_basic_attack", data)
